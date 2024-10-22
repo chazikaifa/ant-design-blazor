@@ -1,22 +1,31 @@
-﻿using System.Collections;
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Components;
 
 namespace AntDesign
 {
+    /// <summary>
+    /// <see cref="Space"/> item, use to set item style
+    /// </summary>
     public partial class SpaceItem : AntDomComponentBase
     {
         [CascadingParameter]
-        public Space Parent { get; set; }
+        private Space Parent { get; set; }
 
+        /// <summary>
+        /// Child content
+        /// </summary>
         [Parameter]
         public RenderFragment ChildContent { get; set; }
 
         private static readonly Dictionary<string, string> _spaceSize = new()
         {
-            ["small"] = "8",
-            ["middle"] = "16",
-            ["large"] = "24"
+            [SpaceSize.Small] = "8",
+            [SpaceSize.Middle] = "16",
+            [SpaceSize.Large] = "24"
         };
 
         private string _marginStyle = "";

@@ -1,5 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
+using System.Globalization;
 using AntDesign.JsInterop;
 using Bunit;
 using FluentAssertions;
@@ -76,7 +79,7 @@ namespace AntDesign.Tests.Avatar
                 .Add(x => x.Text, "KR"));
 
             systemUnderTest.MarkupMatches(@$"<span class=""ant-avatar"" style="""" id:ignore>
-                <span class=""ant-avatar-string"" style=""transform: scale({expectedScale}) translateX(-50%);"">KR</span>
+                <span class=""ant-avatar-string"" style=""transform: scale({expectedScale.ToString(CultureInfo.InvariantCulture)}) translateX(-50%);"">KR</span>
             </span>");
         }
 
@@ -112,7 +115,7 @@ namespace AntDesign.Tests.Avatar
                 {
                     OffsetWidth = textWidth
                 });
-            
+
             JSInterop
                 .Setup<DomRect>("AntDesign.interop.domInfoHelper.getBoundingClientRect", _ => true)
                 .SetResult(new DomRect
@@ -132,7 +135,7 @@ namespace AntDesign.Tests.Avatar
                 .Add(x => x.ChildContent, fragment));
 
             systemUnderTest.MarkupMatches(@$"<span class=""ant-avatar"" style="""" id:ignore>
-                <span class=""ant-avatar-string"" style=""transform: scale({expectedScale}) translateX(-50%);"">
+                <span class=""ant-avatar-string"" style=""transform: scale({expectedScale.ToString(CultureInfo.InvariantCulture)}) translateX(-50%);"">
                     <span>Text</span>
                 </span>
             </span>");
